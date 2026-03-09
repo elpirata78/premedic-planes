@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://planespremedic.com.ar/sitemap.xml
