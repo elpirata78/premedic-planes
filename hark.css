@@ -1,0 +1,24 @@
+/* Base que faltaba en la carpeta de Tom (index.html la pide como hark.css).
+   Define radios, easing, gutter y tamaño táctil, más reset y tabla. */
+:root {
+  --r-s: 10px; --r-m: 14px; --r-l: 22px; --r-xl: 30px; --r-pill: 999px;
+  --gutter: clamp(16px, 4vw, 32px);
+  --tap: 44px;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-quick: 180ms;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+img, video, svg { max-width: 100%; }
+img { height: auto; }
+button { font: inherit; }
+
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.table-wrap table { width: 100%; min-width: 760px; border-collapse: collapse; text-align: left; }
+.table-wrap caption { text-align: left; font-size: 13px; color: #4f5d6d; padding-bottom: 12px; }
+.table-wrap th, .table-wrap td { padding: 14px 12px; border-bottom: 1px solid #e2e8ee; vertical-align: top; }
+.table-wrap td small, .table-wrap th small { display: block; font-size: 12px; font-weight: 600; color: #4f5d6d; margin-top: 4px; }
+.table-wrap .num { font-weight: 800; white-space: nowrap; }
+.table-wrap .muted { color: #4f5d6d; }
+.table-wrap .is-highlight { background: #e9f6f5; }
