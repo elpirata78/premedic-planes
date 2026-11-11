@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Planes Premedic · Agencia Comercial Oficial</title>
-    <meta name="description" content="Asociate a Premedic con tu recibo de sueldo sin pagar cuota mensual. Agencia Comercial Oficial de Grupo Premedic." />
+    <title>Premedic Medicina Privada | Planes de Salud con tu Obra Social</title>
+    <meta name="description" content="Asociate a Premedic Medicina Privada con tu recibo de sueldo y tus aportes de obra social, sin pagar cuota mensual. Planes 200, 300, 400 y 500. Agencia Comercial Oficial." />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
     <meta name="geo.region" content="AR-C" />
     <meta name="geo.placename" content="Buenos Aires" />
@@ -12,7 +12,7 @@
     <meta name="theme-color" content="#0b1f3a" />
 
     <!-- Vista previa al compartir (WhatsApp, Facebook, X) -->
-    <meta property="og:title" content="Planes Premedic · Tu salud protegida sin pagar cuota mensual" />
+    <meta property="og:title" content="Premedic Medicina Privada | Planes de Salud con tu Obra Social" />
     <meta property="og:description" content="Con tu recibo de sueldo te asociás a Premedic usando tus aportes. Planes 200, 300, 400 y 500. Agencia Comercial Oficial." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://planespremedic.com.ar/" />
@@ -42,6 +42,24 @@
          condición Click Classes contiene wa-cta).
          <script>(function(w,d,s,l,i){ ... })(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
          ============================================================ -->
+
+    <!-- Google Analytics 4 (gtag.js). Reemplazá G-XXXXXXX por el ID real de la propiedad "Planes Premedic".
+         Mientras siga el ID de ejemplo, no se carga nada (así no se mandan datos a una cuenta inexistente). -->
+    <script>
+      window.GA_ID = "G-XXXXXXX";
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { window.dataLayer.push(arguments); }
+      if (!/X{4,}/.test(window.GA_ID)) {
+        (function () {
+          var s = document.createElement("script");
+          s.async = true;
+          s.src = "https://www.googletagmanager.com/gtag/js?id=" + window.GA_ID;
+          document.head.appendChild(s);
+        })();
+        gtag("js", new Date());
+        gtag("config", window.GA_ID);
+      }
+    </script>
 
     <link rel="icon" type="image/png" href="logo-arbol.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -216,6 +234,11 @@
       /* Divisor con partículas Three.js */
       .x-divider { position: relative; height: clamp(180px, 22vw, 260px); background: var(--x-navy); overflow: hidden; }
       .x-divider canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; opacity: 0.55; }
+      /* Celulares y movimiento reducido: imagen liviana con degradé en lugar de Three.js */
+      .x-divider__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.35; display: none; }
+      .x-divider.is-static { background: linear-gradient(135deg, var(--x-navy), #0e4a52); }
+      .x-divider.is-static .x-divider__img { display: block; }
+      .x-divider.is-static canvas { display: none; }
       .x-divider__txt { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 var(--gutter); color: #fff; font-weight: 800; font-size: clamp(20px, 3vw, 32px); letter-spacing: -0.02em; pointer-events: none; }
 
       /* Bento de beneficios */
@@ -420,7 +443,7 @@
           <div class="x-wrap" style="width: 100%">
             <div class="x-hero__copy">
               <span class="x-badge"><img src="logo-arbol.png" alt="" width="28" height="28" />Agencia Comercial Oficial de Grupo Premedic</span>
-              <h1 id="hero-title">Tu salud protegida <em>sin pagar cuota mensual</em></h1>
+              <h1 id="hero-title">Medicina privada Premedic <em>sin pagar cuota mensual</em></h1>
               <p class="x-hero__sub">Con tu recibo de sueldo podés asociarte a Premedic usando tus aportes de obra social.</p>
               <div class="x-ctas">
                 <a class="x-btn x-btn--wa wa-cta" data-cta="hero" href="https://api.whatsapp.com/send?phone=5491130630843&text=Hola!%20Quiero%20informaci%C3%B3n%20sobre%20planes%20de%20Premedic" target="_blank" rel="noopener">
@@ -686,6 +709,7 @@
 
         <!-- ================= DIVISOR: partículas Three.js ================= -->
         <div class="x-divider" id="divider" aria-hidden="true">
+          <img class="x-divider__img" src="v23072.jpg" alt="" loading="lazy" />
           <canvas id="scene"></canvas>
           <p class="x-divider__txt">Cobertura que late con vos, las 24 hs.</p>
         </div>
@@ -1002,8 +1026,7 @@
     </svg>
 
     <script src="hark.js"></script>
-    <!-- Three.js (build clásico UMD) para el divisor de partículas. Si el CDN falla, el divisor queda liso. -->
-    <script src="https://unpkg.com/three@0.149.0/build/three.min.js" integrity="sha384-RRHfJ6w1mTlKUBMYT/hvnRiOzEB/vyRV3DrQOseb6oYfvaZSfdd0byS4bHps0k2R" crossorigin="anonymous" defer></script>
+    <!-- Three.js se carga de forma dinámica solo en escritorio (ver módulo 12). En celulares y con movimiento reducido no se descarga. -->
     <script>
       /* PLANES PREMEDIC · interacciones (módulos independientes) */
       (function () {
@@ -1019,7 +1042,10 @@
           window.dataLayer = window.dataLayer || [];
           document.addEventListener("click", function (e) {
             var a = e.target.closest && e.target.closest(".wa-cta");
-            if (a) window.dataLayer.push({ event: "wa_click", cta: a.getAttribute("data-cta") });
+            if (!a) return;
+            var cta = a.getAttribute("data-cta");
+            window.dataLayer.push({ event: "wa_click", cta: cta });
+            if (typeof window.gtag === "function") window.gtag("event", "click_whatsapp", { cta: cta });
           });
         });
 
@@ -1206,10 +1232,23 @@
         });
 
         /* 12. Divisor: cruz de partículas Three.js, sutil */
-        window.addEventListener("load", function () { safe(initDivider); });
+        window.addEventListener("load", function () { safe(loadDivider); });
+        function loadDivider() {
+          var host = $("#divider");
+          if (!host) return;
+          // Celulares (< 768px) o movimiento reducido: no se descarga three.js; queda la imagen con degradé.
+          if (window.innerWidth < 768 || reduceMotion) { host.classList.add("is-static"); return; }
+          var s = document.createElement("script");
+          s.src = "https://unpkg.com/three@0.149.0/build/three.min.js";
+          s.integrity = "sha384-RRHfJ6w1mTlKUBMYT/hvnRiOzEB/vyRV3DrQOseb6oYfvaZSfdd0byS4bHps0k2R";
+          s.crossOrigin = "anonymous";
+          s.onload = function () { safe(initDivider); };
+          s.onerror = function () { host.classList.add("is-static"); };
+          document.body.appendChild(s);
+        }
         function initDivider() {
           var host = $("#divider"), canvas = $("#scene");
-          if (!window.THREE) { canvas.style.display = "none"; return; }
+          if (!window.THREE) { host.classList.add("is-static"); return; }
           var T = window.THREE, renderer;
           try { renderer = new T.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true }); } catch (e) { canvas.style.display = "none"; return; }
           renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
